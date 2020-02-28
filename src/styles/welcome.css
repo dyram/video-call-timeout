@@ -52,3 +52,33 @@
 .dropdown-div {
   margin: 2%;
 }
+.mail-div {
+  display: flex;
+  background: #efefef;
+  padding: 2%;
+  width: 32%;
+  align-items: center;
+}
+.mail-div > * {
+  margin: 1%;
+}
+.mail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#title,
+#desc {
+  padding: 4%;
+}
+#mail-button {
+  height: 6vh;
+  margin-left: auto;
+}
+#desc {
+  height: 10vh;
+}
+#title::placeholder,
+#desc::placeholder {
+  text-transform: uppercase;
+}

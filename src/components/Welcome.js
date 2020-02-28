@@ -13,7 +13,9 @@ export class Welcome extends Component {
     sub: false,
     subText: "Subscribe",
     users: [],
-    data: []
+    data: [],
+    title: "",
+    desc: ""
   };
 
   componentDidMount() {
@@ -99,9 +101,12 @@ export class Welcome extends Component {
     console.log("Handled Mail");
     Axios.post("http://localhost:3031/sendMail", {
       users: this.state.users,
-      channel: this.state.channel
+      channel: this.state.channel,
+      title: this.state.title,
+      desc: this.state.desc
     }).then(res => {
       console.log(res.data);
+      alert("Mail sent successfully");
     });
   };
 
@@ -153,14 +158,43 @@ export class Welcome extends Component {
             Start Call
           </Link>
         </div>
+        <hr />
+        &nbsp;&nbsp;
+        <h4>
+          <em>Send an invite to your friends via email to join your call</em>
+        </h4>
         <div className="dropdown-div">
           <Multiselect
             options={this.state.data}
             onSelectOptions={this.handleSubmit}
           />
-          <button className="logout-button" onClick={this.sendMail()}>
-            Send Mail
-          </button>
+          <br />
+          <div className="mail-div">
+            <div className="mail-content">
+              <input
+                id="title"
+                name="title"
+                placeholder="title"
+                onChange={e => this.change(e)}
+              ></input>
+              <br />
+              <br />
+              <input
+                id="desc"
+                name="desc"
+                placeholder="desc"
+                onChange={e => this.change(e)}
+              ></input>
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <button
+              id="mail-button"
+              className="logout-button"
+              onClick={this.sendMail}
+            >
+              Send Mail
+            </button>
+          </div>
         </div>
       </div>
     );

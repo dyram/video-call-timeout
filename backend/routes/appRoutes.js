@@ -199,6 +199,7 @@ module.exports = app => {
     console.log("Sending mail", req.body);
     let users = req.body.users;
     let channel = req.body.channel;
+    let content = req.body.desc;
     console.log(req.body.channel);
     if (users.length > 0) {
       console.log("Mail sent");
@@ -213,11 +214,13 @@ module.exports = app => {
         await transporter.sendMail({
           from: "dyram.meyn@codingmart.com",
           to: maps,
-          subject: "Sending Email using Node.js",
+          subject: req.body.title,
           text: "That was easy!",
           html: `<b>You have recieved an invite to join a call</b><br />
           <hr />
           <br />
+          <h3>${content}</h3>
+          <br/>
           <a
             style="background:orange;padding:1%;text-decoration: none;font-size: large;"
             href="http://localhost:3000/meeting/${channel}"
